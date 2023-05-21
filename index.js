@@ -1,25 +1,19 @@
 const express = require('express');
-const mongoose = require('mongoose')
+const cors = require('cors');
 const app = express();
+const connectDB = require("./config/connectDB");
+const expensesRouter = require("./routes/expenseRoutes");
 require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.qujfvjg.mongodb.net/`)
-    console.log("MongoDB is connected");
-  }
-  catch(error) {
-    console.log("MongoDB is not connected");
-    console.log(error.message);
-    process.exit(1);
-  }
-
-}
+// middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use("/expenseRecord", expensesRouter)
 
 app.get("/", (req, res)  => {
   res.send("Expense Tracking App's server is running");
- 
 })
 
 app.listen(PORT, async () => {
