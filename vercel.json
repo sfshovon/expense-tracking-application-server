@@ -8,8 +8,12 @@
   ],
   "routes": [
     {
+      "src": "/expenseRecord/(.*)",
+      "dest": "/expenseRecord"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/index.js"
+      "dest": "/"
     }
   ]
 }
