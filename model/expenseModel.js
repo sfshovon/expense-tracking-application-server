@@ -9,12 +9,18 @@ const expenseSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  categories: Object,
+  categories: {
+    type: Object,
+    required: true
+  },
   date: {
     type: Date,
     required: true
   },
-  notes: String
+  notes: {
+    type: String,
+    required: true
+  },
 });
 
 const expenseModel = mongoose.model("expense_records", expenseSchema);
