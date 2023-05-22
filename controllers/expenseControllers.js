@@ -52,21 +52,20 @@ const deleteExpense = async (req, res) => {
 const updateExpense = async (req, res) => {
   try {
     const id = req.params.id;
-    const { title, amount, categories, date, notes } = req.body;
-    const updatedExpense = await expenseModel.updateOne({ _id: id },
+    const { title, amount, categories, notes } = req.body;
+    const updatedExpense = await expenseModel.findOneAndUpdate({ _id: id },
       {
         $set: {
           title,
           amount, 
-          categories, 
-          date, 
+          categories,
           notes    
         },
       },
       { new: true }
     );
     if (updatedExpense) {
-      res.status(200).send({ message: "Expense record is updated" });
+      res.status(200).send(updatedExpense);
     } 
     else {
       res.status(404).send({ message: "Expense record is not found with this id" });
