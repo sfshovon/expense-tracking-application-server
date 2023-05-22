@@ -8,8 +8,8 @@
   ],
   "routes": [
     {
-      "src": "/expenseRecord",
-      "dest": "/expenseRecord"
+      "src": "/expenseRecord(.*)",
+      "dest": "/expenseRecord$1"
     },
     {
       "src": "/(.*)",
