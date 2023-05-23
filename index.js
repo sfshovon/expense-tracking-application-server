@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use("/expense", expenseRouter)
+app.use("/expenseTracker", expenseRouter)
 
 app.get("/", (req, res)  => {
   res.send("Expense Tracking App's server is running");
