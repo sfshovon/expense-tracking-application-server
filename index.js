@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const connectDB = require("./config/connectDB");
-const expensesRouter = require("./routes/expenseRoutes");
+const expenseRouter = require("./routes/expenseRoutes");
+const { getExpenses, addExpense, deleteExpense, updateExpense } = require("./controllers/expenseControllers");
 require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 
@@ -10,11 +11,20 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use("/expenseRecord", expensesRouter)
+app.use("/expenseRecord", expenseRouter)
 
 app.get("/", (req, res)  => {
   res.send("Expense Tracking App's server is running");
 })
+
+
+const express = require("express");
+const router = express.Router();
+
+router.get("/", getExpenses);
+router.post("/", addExpense);
+router.delete("/:id", deleteExpense);
+router.put("/:id", updateExpense);
 
 app.listen(PORT, async () => {
   console.log(`Server is running at http://localhost:${PORT}`);
