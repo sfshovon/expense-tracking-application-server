@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const router = express.Router();
 const connectDB = require("./config/connectDB");
 const expenseRouter = require("./routes/expenseRoutes");
 const { getExpenses, addExpense, deleteExpense, updateExpense } = require("./controllers/expenseControllers");
@@ -16,10 +17,6 @@ app.use("/expenseRecord", expenseRouter)
 app.get("/", (req, res)  => {
   res.send("Expense Tracking App's server is running");
 })
-
-
-const express = require("express");
-const router = express.Router();
 
 router.get("/", getExpenses);
 router.post("/", addExpense);
