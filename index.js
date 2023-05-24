@@ -12,11 +12,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use("/expenseTracker", expenseRouter)
 
+connectDB().catch(console.dir);
+
 app.get("/", (req, res)  => {
   res.send("Expense Tracking App's server is running");
 })
 
-app.listen(PORT, async () => {
+app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
-  await connectDB();
 })
