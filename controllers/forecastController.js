@@ -8,13 +8,13 @@ const getForecastData = async (req, res) => {
     if (data) {
       // Data Extraction
       const amountData = data?.map(item => ({
-        date: new Date(item.date),
-        amount: item.amount
+        date: new Date(item?.date),
+        amount: item?.amount
       }));
       // console.log("Extracted Amount Data: ", amountData);
 
       // Sort Ascending
-      amountData?.sort((a, b) => a.date - b.date);
+      amountData?.sort((a, b) => a?.date - b?.date);
       // console.log("Sorted Amount Data: ", amountData);
 
       // Prepare Data
@@ -30,7 +30,7 @@ const getForecastData = async (req, res) => {
       // console.log("Predicted Data: ", pred);
 
       const forecastData = pred.map((value, index) => {
-        const date = moment(amountData[amountData.length - 1].date)
+        const date = moment(timeSeriesData[timeSeriesData.length - 1].date)
           .add(index + 1, 'day')
           .format('YYYY-MM-DD');
         return {
