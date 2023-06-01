@@ -30,9 +30,11 @@ const getForecastData = async (req, res) => {
       // console.log("Predicted Data: ", pred);
 
       const forecastData = pred.map((value, index) => {
-        const date = moment(timeSeriesData[timeSeriesData.length - 1].date)
+        const date = moment()
+        // const date = moment()
           .add(index + 1, 'day')
-          .format('YYYY-MM-DD');
+          .format('YYYY-MM-DD')
+          // console.log(date)
         return {
           date: date,
           amount: value
